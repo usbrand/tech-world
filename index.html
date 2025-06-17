@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <!-- Existing head content... -->
+        
+        <!-- Add this right before your closing </head> tag -->
+        <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone - Your Gaming Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ff9900;
+            --secondary: #131921;
+            --light-gray: #eaeded;
+            --dark-gray: #232f3e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: #111;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .signup-button {
+    background-color: #24763f; /* Blue color (like Steam/Xbox) */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none; /* Removes underline if using <a> tag */
+    display: inline-block; /* Ensures padding works on <a> */
+}
+
+.signup-button:hover {
+    background-color: #dbdcd9; /* Darker blue on hover */
+}
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        .search-bar {
+            display: flex;
+            flex-grow: 1;
+            margin: 0 20px;
+            max-width: 800px;
+        }
+        
+        .search-bar select {
+            background-color: #f3f3f3;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            padding: 10px;
+            border-right: 1px solid #ddd;
+        }
+        
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .search-bar button {
+            background-color: var(--primary);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-link span:first-child {
+            font-size: 12px;
+        }
+        
+        .nav-link span:last-child {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .cart {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: black;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1500px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .hero-content h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .hero-content p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: black;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        /* Products Section */
+        .products-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .see-all {
+            font-size: 14px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+        
+        .product-rating {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price span {
+            font-size: 14px;
+            color: #565959;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+        
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .add-to-cart {
+            background-color: #FFD814;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        
+        .buy-now {
+            background-color: var(--primary);
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .region-selector {
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.region-selector i {
+  margin-right: 6px;
+}
+
+#region-selector {
+  background-color: #fff;
+  color: #000;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .signup-button {
+    /* Base */
+    padding: 12px 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0ff;
+    background: transparent;
+    border: 2px solid #0ff;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.signup-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 255, 0.1);
+    transition: all 0.5s;
+}
+
+.signup-button:hover {
+    color: #000;
+    background: #0ff;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+}
+
+.signup-button:hover::before {
+    left: 100%;
+}
+        
+        .cart-item-remove {
+            color: #007185;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .cart-total {
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .currency-selector {
+    margin-left: 20px;
+}
+
+#currencySwitch {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#currencySwitch:hover {
+    border-color: #ff5500;
+    box-shadow: 0 0 5px rgba(255, 85, 0, 0.2);
+}
+
+#currencySwitch:focus {
+    outline: none;
+    border-color: #ff5500;
+}
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Header Layout */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #131921;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 20px; /* Adds space between elements */
+}
+
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+
+        /* Search results message */
+        .search-results-message {
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+        /* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 1200px) {
+    .header-container {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+    
+    .logo {
+        order: 1;
+        margin-right: auto;
+    }
+    
+    .search-bar {
+        order: 3;
+        width: 100%;
+        margin: 15px 0;
+    }
+    
+    .nav-links {
+        order: 2;
+    }
+    
+    .region-selector,
+    .currency-selector {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .header-container {
+        gap: 10px;
+    }
+    
+    .nav-link {
+        margin-left: 10px;
+    }
+    
+    .nav-link span:first-child {
+        display: none;
+    }
+    
+    /* Search bar adjustments */
+    .search-bar select {
+        padding: 8px;
+        max-width: 100px;
+    }
+    
+    /* Hero section */
+    .hero {
+        height: 200px;
+        padding: 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 24px;
+    }
+    
+    /* Product grid */
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .product-image {
+        height: 120px;
+    }
+    
+    .product-title {
+        font-size: 14px;
+        height: auto;
+    }
+    
+    /* Cart modal */
+    .cart-modal {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header elements */
+    .currency-selector,
+    .region-selector {
+        display: none;
+    }
+    
+    .nav-links {
+        margin-left: auto;
+    }
+    
+    /* Product grid */
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .see-all {
+        align-self: flex-end;
+    }
+    
+    /* Buttons */
+    .btn, .add-to-cart, .buy-now {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+    
+    /* Cart items */
+    .cart-item {
+        flex-direction: column;
+    }
+    
+    .cart-item-image {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Mobile menu toggle (optional) */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: var(--secondary);
+        padding: 15px;
+        border-radius: 5px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+}
+    </style>
+</head>
+<body>
+    <header> 
+        <div class="header-container">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</button>
+ <a href="http://127.0.0.1:3000/signup.html" class="signup-button">Signup</a>
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GameZone</span>
+            </div>
+            
+            
+        <div class="region-selector">
+                <i class="fas fa-globe"></i>
+                <select id="region-selector">
+                  <option value="us">United States</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="in">India</option>
+                  <option value="pk">Pakistan</option>
+                  <option value="ps">Palestine</option>
+                  <option value="de">Germany</option>
+                  <option value="jp">Japan</option>
+                </select>
+            </div>
+            <div class="currency-selector">
+                <select id="currencySwitch">
+                    <option value="USD">USD ($)</option>
+                    <option value="PKR">PKR (₨)</option>
+                </select>
+            </div>
+
+            <div class="search-bar">
+                <select id="search-category">
+                    <option value="all">All Categories</option>
+                    <option value="consoles">Gaming Consoles</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+                <input type="text" id="search-input" placeholder="Search for products...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">
+                    <span>Hello, Sign in</span>
+                    <span>Account & Lists</span>
+                </a>
+                <a href="#" class="nav-link cart" id="cart-btn">
+                    <span class="cart-count">0</span>
+                    <span><i class="fas fa-shopping-cart"></i> Cart</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span>Returns</span>
+                    <span>& Orders</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Next Gen Gaming Gear</h1>
+                <p>Upgrade your setup with the latest gaming equipment</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+        
+        <!-- Search results message -->
+        <div class="search-results-message" id="search-results-message"></div>
+        
+        <!-- Consoles Section -->
+        <div class="products-section" id="consoles-section">
+            <h2 class="section-title">
+                Gaming Consoles
+                <a href="#" class="see-all">See all</a>
+            </h2>
+            <div class="products-grid" id="consoles-grid">
+                <!-- Consoles will be added here dynamically -->
+            </div>
+        </div>
+        
+        <!-- Accessories Section -->
+        <div class="products-section" id="accessories-section">
+            <h2 class="section-title">
+                Gaming Accessories
+                <a href="#" class="see-all">See all</a>
+            </h2>
+            <div class="products-grid" id="accessories-grid">
+                <!-- Accessories will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-total" id="cart-total">
+            Total: $0.00
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <script>
+        // Product data
+        const products = {
+            consoles: [
+                {
+                    id: "1",
+                    name: "PlayStation 5 Console (Disc Version)",
+                    price: 499.99,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvVREGW-yII9YdNAj-KGd1r4p4aC_zeUFq5Q&s",
+                    rating: 4.5,
+                    reviews: 4321,
+                    category: "consoles"
+                },
+                {
+                    id: "2",
+                    name: "Xbox Series X 1TB SSD Console",
+                    price: 499.99,
+                    image: "https://m.media-amazon.com/images/I/61JGKhqxHxL._AC_SX679_.jpg",
+                    rating: 4,
+                    reviews: 3987,
+                    category: "consoles"
+                },
+                {
+                    id: "3",
+                    name: "Nintendo Switch OLED Model",
+                    price: 349.99,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTyyDOx5KlM5wu5N3j8r9pqVe_GDefLJhfnQ&s",
+                    rating: 5,
+                    reviews: 6543,
+                    category: "consoles"
+                },
+                {
+                    id: "4",
+                    name: "Steam Deck 512GB Handheld Gaming PC",
+                    price: 649.99,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFq2znTJg_-oUEhh5_DxIq4dRIVl6uYxr7cw&s",
+                    rating: 4.5,
+                    reviews: 2456,
+                    category: "consoles"
+                },
+                {
+                    id: "9",
+                    name: "Xbox 360 250GB Console",
+                    price: 199.99,
+                    image: "https://gamestoreisb.com/wp-content/uploads/2025/03/Untitled-1-2024-05-30T184227.580.webp",
+                    rating: 4.2,
+                    reviews: 3210,
+                    category: "consoles"
+                }
+            ],
+            accessories: [
+                {
+                    id: "5",
+                    name: "PlayStation DualSense Wireless Controller",
+                    price: 69.99,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqD4z63wrtxejniVM61tdN-6LRyhegDJTFNA&s",
+                    rating: 4.5,
+                    reviews: 12345,
+                    category: "accessories"
+                },
+                {
+                    id: "6",
+                    name: "SteelSeries Arctis 7 Wireless Gaming Headset",
+                    price: 149.99,
+                    oldPrice: 179.99,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI4YfvvcLbB4AIiE1Zcev1o4HIHXVZGhzS2A&s",
+                    rating: 4,
+                    reviews: 8765,
+                    category: "accessories"
+                },
+                {
+                    id: "7",
+                    name: "Razer BlackWidow V3 Mechanical Gaming Keyboard",
+                    price: 139.99,
+                    image: "https://static3.webx.pk/files/19643/Images/kkzt4nfbyfybkxyo-19643-687048-020921081533.jpg",
+                    rating: 5,
+                    reviews: 5678,
+                    category: "accessories"
+                },
+                {
+                    id: "8",
+                    name: "Logitech G502 HERO High Performance Gaming Mouse",
+                    price: 49.99,
+                    oldPrice: 79.99,
+                    image: "https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SX679_.jpg",
+                    rating: 4.5,
+                    reviews: 23456,
+                    category: "accessories"
+                },
+                {
+                    id: "10",
+                    name: "Xbox Wireless Controller",
+                    price: 59.99,
+                    image: "https://games4u.pk/cdn/shop/files/P98.jpg?v=1694447520",
+                    rating: 4.7,
+                    reviews: 12500,
+                    category: "accessories"
+                }
+            ]
+        };
+
+        // Currency conversion rates
+        const exchangeRates = {
+            USD: 1,
+            PKR: 278.50 // Current approximate rate, update as needed
+        };
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize elements
+            const cartBtn = document.getElementById('cart-btn');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const overlay = document.getElementById('overlay');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.querySelector('.cart-count');
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const searchCategory = document.getElementById('search-category');
+            const searchResultsMessage = document.getElementById('search-results-message');
+            const consolesGrid = document.getElementById('consoles-grid');
+            const accessoriesGrid = document.getElementById('accessories-grid');
+            const currencySwitch = document.getElementById('currencySwitch');
+            let cart = [];
+            let currentCurrency = 'USD';
+
+            // Render all products
+            function renderProducts() {
+                consolesGrid.innerHTML = '';
+                accessoriesGrid.innerHTML = '';
+                
+                products.consoles.forEach(product => {
+                    consolesGrid.appendChild(createProductCard(product));
+                });
+                
+                products.accessories.forEach(product => {
+                    accessoriesGrid.appendChild(createProductCard(product));
+                });
+            }
+            
+            // Create product card
+            function createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.dataset.id = product.id;
+                card.dataset.category = product.category;
+                
+                // Generate stars
+                let starsHtml = '';
+                const fullStars = Math.floor(product.rating);
+                const hasHalfStar = product.rating % 1 >= 0.5;
+                
+                for (let i = 0; i < 5; i++) {
+                    if (i < fullStars) {
+                        starsHtml += '<i class="fas fa-star"></i>';
+                    } else if (i === fullStars && hasHalfStar) {
+                        starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                    } else {
+                        starsHtml += '<i class="far fa-star"></i>';
+                    }
+                }
+                
+                // Price HTML
+                const price = convertCurrency(product.price, currentCurrency);
+                const oldPrice = product.oldPrice ? convertCurrency(product.oldPrice, currentCurrency) : null;
+                
+                const priceHtml = oldPrice 
+                    ? `${formatPrice(price)} <span>${formatPrice(oldPrice)}</span>`
+                    : formatPrice(price);
+                
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-rating">
+                        ${starsHtml}
+                        <span>(${product.reviews.toLocaleString()})</span>
+                    </div>
+                    <div class="product-price">${priceHtml}</div>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        <button class="buy-now">Buy Now</button>
+                    </div>
+                `;
+                
+                return card;
+            }
+            
+            // Convert currency
+            function convertCurrency(amount, currency) {
+                return amount * exchangeRates[currency];
+            }
+            
+            // Format price based on currency
+            function formatPrice(amount) {
+                return currentCurrency === 'USD' 
+                    ? `$${amount.toFixed(2)}` 
+                    : `₨${amount.toFixed(0)}`;
+            }
+            
+            // Update all prices when currency changes
+            function updatePricesForCurrency() {
+                document.querySelectorAll('.product-price').forEach(priceElement => {
+                    const productId = priceElement.closest('.product-card').dataset.id;
+                    const allProducts = [...products.consoles, ...products.accessories];
+                    const product = allProducts.find(p => p.id === productId);
+                    
+                    if (product) {
+                        const price = convertCurrency(product.price, currentCurrency);
+                        const oldPrice = product.oldPrice ? convertCurrency(product.oldPrice, currentCurrency) : null;
+                        
+                        priceElement.innerHTML = oldPrice 
+                            ? `${formatPrice(price)} <span>${formatPrice(oldPrice)}</span>`
+                            : formatPrice(price);
+                    }
+                });
+                
+                // Update cart prices
+                updateCart();
+            }
+            
+            // Toggle cart visibility
+            function toggleCart() {
+                cartModal.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+            
+            // Add to cart
+            function addToCart(productId) {
+                const allProducts = [...products.consoles, ...products.accessories];
+                const product = allProducts.find(p => p.id === productId);
+                
+                if (!product) return;
+                
+                const existingItem = cart.find(item => item.id === productId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                toggleCart();
+            }
+            
+            // Remove from cart
+            function removeFromCart(productId) {
+                cart = cart.filter(item => item.id !== productId);
+                updateCart();
+            }
+            
+            // Update cart UI
+            function updateCart() {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const convertedPrice = convertCurrency(item.price, currentCurrency);
+                    const itemTotal = convertedPrice * item.quantity;
+                    total += itemTotal;
+                    
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.name}</h4>
+                            <div class="cart-item-price">${formatPrice(convertedPrice)} x ${item.quantity} = ${formatPrice(itemTotal)}</div>
+                            <div class="cart-item-remove" data-id="${item.id}">Remove</div>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                cartTotal.textContent = `Total: ${formatPrice(total)}`;
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+            
+            // Perform search
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const category = searchCategory.value;
+                
+                // Hide all sections initially
+                document.querySelectorAll('.products-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show relevant sections
+                if (category === 'all' || category === 'consoles') {
+                    document.getElementById('consoles-section').style.display = 'block';
+                }
+                if (category === 'all' || category === 'accessories') {
+                    document.getElementById('accessories-section').style.display = 'block';
+                }
+                
+                if (searchTerm === '') {
+                    // Show all products if search is empty
+                    document.querySelectorAll('.product-card').forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    searchResultsMessage.style.display = 'none';
+                    return;
+                }
+                
+                // Filter products
+                let resultsFound = 0;
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const productName = card.querySelector('.product-title').textContent.toLowerCase();
+                    const productCategory = card.dataset.category;
+                    
+                    const matchesSearch = productName.includes(searchTerm);
+                    const matchesCategory = category === 'all' || productCategory === category;
+                    
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                        resultsFound++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update search message
+                searchResultsMessage.style.display = 'block';
+                searchResultsMessage.textContent = resultsFound === 0 
+                    ? `No results found for "${searchTerm}"` 
+                    : `Found ${resultsFound} results for "${searchTerm}"`;
+            }
+            
+            // Event listeners
+            cartBtn.addEventListener('click', toggleCart);
+            closeCart.addEventListener('click', toggleCart);
+            overlay.addEventListener('click', toggleCart);
+            
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    addToCart(e.target.dataset.id);
+                }
+            });
+            
+            cartItemsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('cart-item-remove')) {
+                    removeFromCart(e.target.dataset.id);
+                }
+            });
+            
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            
+            // Currency switch handler
+            currencySwitch.addEventListener('change', function() {
+                currentCurrency = this.value;
+                updatePricesForCurrency();
+            });
+            
+            // Initialize the page
+            renderProducts();
+            // Mobile menu toggle
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-toggle')) {
+        navLinks.classList.remove('active');
+    }
+});
+        });
+    </script>
+</body>
+</html>
+
+
+
